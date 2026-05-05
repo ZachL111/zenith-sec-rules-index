@@ -1,0 +1,10 @@
+{
+  "name": "zachl111/zenith-sec-rules-index",
+  "description": "Implement a PHP security tooling project for rules resource planning, using capacity fixtures and allocation and spill reports.",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Portfolio\\": "src/"
+    }
+  }
+}
