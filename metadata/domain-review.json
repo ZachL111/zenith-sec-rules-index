@@ -1,0 +1,73 @@
+{
+  "repo": "zenith-sec-rules-index",
+  "language": "PHP",
+  "category": "Security tooling",
+  "goal": "Implement a PHP security tooling project for rules resource planning, using capacity fixtures and allocation and spill reports.",
+  "review_model": {
+    "terms": [
+      "trust boundary",
+      "claim drift",
+      "replay exposure",
+      "policy width"
+    ],
+    "lanes": [
+      "ship",
+      "watch",
+      "hold"
+    ],
+    "score": "signal * 2 + slack + confidence - drag * 3",
+    "purpose": "surface the domain-specific cases that need the most careful review"
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "focus": "trust boundary",
+      "signal": 50,
+      "slack": 43,
+      "drag": 27,
+      "confidence": 61,
+      "score": 123,
+      "lane": "watch"
+    },
+    {
+      "name": "stress",
+      "focus": "claim drift",
+      "signal": 69,
+      "slack": 43,
+      "drag": 16,
+      "confidence": 86,
+      "score": 219,
+      "lane": "ship"
+    },
+    {
+      "name": "edge",
+      "focus": "replay exposure",
+      "signal": 69,
+      "slack": 21,
+      "drag": 30,
+      "confidence": 67,
+      "score": 136,
+      "lane": "watch"
+    },
+    {
+      "name": "recovery",
+      "focus": "policy width",
+      "signal": 67,
+      "slack": 46,
+      "drag": 24,
+      "confidence": 75,
+      "score": 183,
+      "lane": "ship"
+    },
+    {
+      "name": "stale",
+      "focus": "trust boundary",
+      "signal": 79,
+      "slack": 50,
+      "drag": 15,
+      "confidence": 77,
+      "score": 240,
+      "lane": "ship"
+    }
+  ]
+}

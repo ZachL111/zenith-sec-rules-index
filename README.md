@@ -1,68 +1,40 @@
 # zenith-sec-rules-index
 
-`zenith-sec-rules-index` explores security tooling in PHP. The repository keeps the core rule set compact, then surrounds it with examples that show how the decisions move.
+`zenith-sec-rules-index` keeps a focused PHP implementation around security tooling. The project goal is to implement a PHP security tooling project for rules resource planning, using capacity fixtures and allocation and spill reports.
 
-## Zenith Sec Rules Index Notes
+## Reason For The Project
 
-The quickest review path is the verifier first, then the fixtures, then the operations note. That order makes it easy to see whether the code, data, and explanation still agree.
+I want this repository to be useful as a quick reading exercise: fixtures first, implementation second, verifier last.
 
-## Implementation Notes
+## Zenith Sec Rules Index Review Notes
 
-The project is organized around a compact model rather than a large framework. Inputs are scored, classified, and checked against golden fixtures. The constants live in code and are mirrored in metadata so documentation drift is easy to catch. The PHP implementation uses strict types and a small namespaced policy class.
+The first comparison I would make is `trust boundary` against `trust boundary` because it shows where the rule is most opinionated.
 
-## Why This Exists
+## What It Does
 
-The repository exists to keep a technical idea small enough to reason about. The implementation avoids external dependencies where possible, then uses fixtures to make changes easy to review.
+- `fixtures/domain_review.csv` adds cases for trust boundary and claim drift.
+- `metadata/domain-review.json` records the same cases in structured form.
+- `config/review-profile.json` captures the read order and the two review questions.
+- `examples/zenith-sec-rules-walkthrough.md` walks through the case spread.
+- The PHP code includes a review path for `trust boundary` and `trust boundary`.
+- `docs/field-notes.md` explains the strongest and weakest cases.
 
-## Feature Notes
+## How It Is Put Together
 
-- Uses fixture data to keep policy checks changes visible in code review.
-- Includes extended examples for replay guards, including `recovery` and `degraded`.
-- Documents claim validation tradeoffs in `docs/operations.md`.
-- Runs locally with a single verification command and no external credentials.
-- Stores project constants and verification metadata in `metadata/project.json`.
+The fixture data drives the tests. The code stays thin, while `metadata/domain-review.json` and `config/review-profile.json` explain what each case is meant to protect.
 
-## Example Scenarios
+The added PHP path is deliberately direct, with fixtures doing most of the explaining.
 
-`recovery` is the first example I would inspect because it lands on the `accept` path with a score of 199. The broader file also keeps `degraded` at -39 and `recovery` at 199, which gives the model a useful low-to-high spread.
-
-## Code Tour
-
-- `src`: primary implementation
-- `tests`: verification harness
-- `fixtures`: compact golden scenarios
-- `examples`: expanded scenario set
-- `metadata`: project constants and verification metadata
-- `docs`: operations and extension notes
-- `scripts`: local verification and audit commands
-
-## Local Setup
-
-The only required setup is the local PHP toolchain. After cloning, stay in the repo root so fixture paths resolve correctly.
-
-## Try It
+## Run It
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/verify.ps1
 ```
 
-This runs the language-level build or test path against the compact fixture set.
+## Check It
 
-## Tests
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts/audit.ps1
-```
-
-The audit command checks repository structure and README constraints before it delegates to the verifier.
+The verifier is intentionally local. It should fail if the fixture score math, lane assignment, or language-specific test drifts.
 
 ## Boundaries
 
-The scoring model is simple by design. More domain-specific behavior should be added through explicit adapters or extra fixture classes rather than hidden constants.
-
-## Roadmap
-
-- Add a short report command that prints the score breakdown for a single scenario.
-- Add malformed input fixtures so the failure path is as visible as the happy path.
-- Split the scoring constants into a typed configuration object and validate it before use.
-- Add one more security tooling fixture that focuses on a malformed or borderline input.
+The repository is intentionally scoped to local checks. I would expand it by adding adversarial fixtures before adding features.
