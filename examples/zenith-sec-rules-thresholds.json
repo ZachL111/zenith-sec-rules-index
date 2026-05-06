@@ -1,0 +1,17 @@
+{
+  "repo": "zenith-sec-rules-index",
+  "thresholds": {
+    "signal": 2,
+    "slack": 2,
+    "confidence": 1,
+    "drag": 3,
+    "ship": 183,
+    "watch": 99
+  },
+  "terms": [
+    "trust boundary",
+    "claim drift",
+    "replay exposure",
+    "policy width"
+  ]
+}
